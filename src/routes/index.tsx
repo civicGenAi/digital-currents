@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { PageTransition } from "../components/PageTransition";
 import { NetworkMesh } from "../components/NetworkMesh";
 import { RevealHeading, FadeIn } from "../components/RevealText";
+import { RotatingWord, RotatingLine } from "../components/RotatingWord";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,7 +15,10 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "East Africa Internet Group is a digital-centric marketing agency mobilizing local talent and global networks across the region." },
       { property: "og:title", content: "EAG — Building a connected, prosperous East Africa" },
       { property: "og:description", content: "Digital-centric marketing agency mobilizing local talent and global networks across East Africa." },
+      { property: "og:url", content: "https://eastafricainternetgroup.com/" },
+      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
+    links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/" }],
   }),
   component: Index,
 });
@@ -39,17 +43,29 @@ function Index() {
           <FadeIn delay={0.1}>
             <span className="text-xs uppercase tracking-[0.3em] opacity-60">East Africa Internet Group</span>
           </FadeIn>
-          <RevealHeading
-            highlight="connected,"
-            className="mt-6 max-w-[18ch] font-display font-semibold leading-[1.05]"
-            delay={0.2}
-          >
-            Building a connected, prosperous East Africa.
-          </RevealHeading>
-          <FadeIn delay={0.9} className="mt-8 max-w-xl">
-            <p className="text-base leading-relaxed opacity-75 md:text-lg">
-              A digital-centric marketing agency mobilizing local talent and global networks across the region.
-            </p>
+          <FadeIn delay={0.2}>
+            <h1 className="mt-6 max-w-[20ch] font-display text-5xl font-semibold leading-[1.02] md:text-7xl lg:text-[5.5rem]">
+              Building a&nbsp;
+              <RotatingWord
+                words={["connected,", "creative,", "courageous,", "borderless,", "prosperous,"]}
+                interval={2600}
+                className="font-display"
+              />
+              <br />
+              East Africa.
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.9} className="mt-8 max-w-xl text-base leading-relaxed opacity-75 md:text-lg">
+            <RotatingLine
+              interval={4200}
+              lines={[
+                "A digital-centric marketing agency mobilizing local talent and global networks across the region.",
+                "Brand, content, and growth — built in the region, for the region.",
+                "Seven countries. One operating network. A single point of view.",
+                "Strategy backed by science, executed with craft and speed.",
+                "We help ambitious teams turn intent into measurable momentum.",
+              ]}
+            />
           </FadeIn>
           <FadeIn delay={1.1} className="mt-10 flex flex-wrap items-center gap-4">
             <Link

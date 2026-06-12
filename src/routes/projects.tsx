@@ -2,7 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { PageTransition } from "../components/PageTransition";
-import { RevealHeading, FadeIn } from "../components/RevealText";
+import { FadeIn } from "../components/RevealText";
+import { PageHero } from "../components/PageHero";
+import heroProjects from "../assets/hero-projects.jpg";
 
 export const Route = createFileRoute("/projects")({
   head: () => ({
@@ -11,7 +13,10 @@ export const Route = createFileRoute("/projects")({
       { name: "description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
       { property: "og:title", content: "Projects — East Africa Internet Group" },
       { property: "og:description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
+      { property: "og:url", content: "https://eastafricainternetgroup.com/projects" },
+      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
+    links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/projects" }],
   }),
   component: Projects,
 });
@@ -28,21 +33,14 @@ const projects = [
 function Projects() {
   return (
     <PageTransition>
-      <section className="relative px-6 pt-40 pb-16 md:px-10">
-        <div className="mx-auto max-w-[1300px]">
-          <FadeIn><span className="text-xs uppercase tracking-[0.3em] opacity-60">Selected Work</span></FadeIn>
-          <RevealHeading
-            className="mt-6 max-w-[18ch] font-display text-4xl font-semibold leading-[1.05] md:text-7xl"
-            highlight="moves"
-            delay={0.1}
-          >
-            Work that moves the region.
-          </RevealHeading>
-          <FadeIn delay={0.6} className="mt-8 max-w-xl text-base leading-relaxed opacity-75 md:text-lg">
-            A living portfolio. New case studies arrive as they ship — each one built around a single strategic question.
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Selected Work"
+        prefix="Work that"
+        rotating={["moves.", "lands.", "compounds.", "outlasts.", "matters."]}
+        suffix="the region."
+        description="A living portfolio. New case studies arrive as they ship — each one built around a single strategic question, then engineered for measurable lift."
+        image={heroProjects}
+      />
 
       <section className="relative px-6 py-20 md:px-10">
         <div className="mx-auto max-w-[1300px]">
