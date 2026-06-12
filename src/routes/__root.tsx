@@ -19,27 +19,10 @@ import { Cursor } from "../components/Cursor";
 import { Preloader } from "../components/Preloader";
 import { LenisProvider } from "../components/LenisProvider";
 import { ScrollProgress } from "../components/ScrollProgress";
+import { NotFoundPage } from "../components/NotFoundPage";
 
 function NotFoundComponent() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+  return <NotFoundPage />;
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
@@ -85,13 +68,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "East Africa Internet Group" },
-      { name: "description", content: "A digital-centric marketing agency building a connected, prosperous East Africa." },
+      { title: "East Africa Internet Group — Digital Marketing Agency for East Africa" },
+      { name: "description", content: "EAG is a digital-centric marketing agency building a connected, prosperous East Africa across Tanzania, Kenya, Uganda, Rwanda, Burundi, DR Congo and South Sudan." },
       { name: "author", content: "East Africa Internet Group" },
-      { property: "og:title", content: "East Africa Internet Group" },
-      { property: "og:description", content: "A digital-centric marketing agency building a connected, prosperous East Africa." },
+      { name: "keywords", content: "East Africa Internet Group, EAG, digital marketing East Africa, marketing agency Tanzania, branding Dar es Salaam, BBN, Business Branding Network, Kenya, Uganda, Rwanda" },
+      { name: "theme-color", content: "#0A2E4D" },
+      { property: "og:site_name", content: "East Africa Internet Group" },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@eag" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -103,6 +89,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/android-chrome-192x192.png" },
+      { rel: "icon", type: "image/png", sizes: "512x512", href: "/android-chrome-512x512.png" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "East Africa Internet Group",
+          alternateName: "EAG",
+          url: "https://eastafricainternetgroup.com/",
+          logo: "https://eastafricainternetgroup.com/android-chrome-512x512.png",
+          description: "Digital-centric marketing agency building a connected, prosperous East Africa.",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Zo Space, 8th Floor, Kinondoni",
+            addressLocality: "Dar-es-Salaam",
+            addressCountry: "TZ",
+          },
+          telephone: "+255754407003",
+          email: "info@eastafricainternetgroup.com",
+          areaServed: ["TZ", "KE", "UG", "RW", "BI", "CD", "SS"],
+        }),
       },
     ],
   }),
@@ -129,6 +143,9 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const matches = useRouterState({ select: (s) => s.matches });
+  // When only the root route matched and the path isn't "/", we're on a 404 page.
+  const isNotFound = matches.length <= 1 && pathname !== "/";
 
   useEffect(() => {
     if (typeof window !== "undefined") window.scrollTo(0, 0);
@@ -140,7 +157,7 @@ function RootComponent() {
         <Preloader />
         <Cursor />
         <ScrollProgress />
-        <Nav />
+        {!isNotFound && <Nav />}
         <main className="relative min-h-screen">
           <AnimatePresence mode="wait" initial={false}>
             <div key={pathname}>
@@ -148,7 +165,7 @@ function RootComponent() {
             </div>
           </AnimatePresence>
         </main>
-        <Footer />
+        {!isNotFound && <Footer />}
       </LenisProvider>
     </QueryClientProvider>
   );
