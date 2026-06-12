@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { PageTransition } from "../components/PageTransition";
 import { RevealHeading, FadeIn } from "../components/RevealText";
+import { PageHero } from "../components/PageHero";
+import heroSectors from "../assets/hero-sectors.jpg";
 
 export const Route = createFileRoute("/sectors")({
   head: () => ({
@@ -11,7 +13,10 @@ export const Route = createFileRoute("/sectors")({
       { name: "description", content: "Seven countries, one network. EAG operates across Tanzania, Kenya, Uganda, Rwanda, Burundi, DR Congo and South Sudan." },
       { property: "og:title", content: "Sectors — East Africa Internet Group" },
       { property: "og:description", content: "Seven countries, one network." },
+      { property: "og:url", content: "https://eastafricainternetgroup.com/sectors" },
+      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
+    links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/sectors" }],
   }),
   component: Sectors,
 });
@@ -30,21 +35,13 @@ function Sectors() {
   const [active, setActive] = useState<string | null>(null);
   return (
     <PageTransition>
-      <section className="relative px-6 pt-40 pb-16 md:px-10">
-        <div className="mx-auto max-w-[1200px]">
-          <FadeIn><span className="text-xs uppercase tracking-[0.3em] opacity-60">Reach & Sectors</span></FadeIn>
-          <RevealHeading
-            className="mt-6 max-w-[16ch] font-display text-4xl font-semibold leading-[1.05] md:text-7xl"
-            highlight="seven"
-            delay={0.1}
-          >
-            Seven countries, one network.
-          </RevealHeading>
-          <FadeIn delay={0.6} className="mt-8 max-w-xl text-base leading-relaxed opacity-75 md:text-lg">
-            A regional footprint built on the ground, anchored in Tanzania and extending across East Africa.
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Reach & Sectors"
+        prefix="Seven countries,"
+        rotating={["one network.", "one rhythm.", "one signal.", "one playbook.", "one ambition."]}
+        description="A regional footprint built on the ground — anchored in Tanzania and extending across Kenya, Uganda, Rwanda, Burundi, DR Congo and South Sudan."
+        image={heroSectors}
+      />
 
       <section className="relative surface-dark overflow-hidden px-6 py-24 md:px-10">
         <div className="mx-auto grid max-w-[1300px] gap-16 lg:grid-cols-[1.4fr_1fr] lg:items-center">

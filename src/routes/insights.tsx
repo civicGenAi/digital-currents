@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { PageTransition } from "../components/PageTransition";
 import { RevealHeading, FadeIn } from "../components/RevealText";
+import { PageHero } from "../components/PageHero";
+import heroInsights from "../assets/hero-insights.jpg";
 
 export const Route = createFileRoute("/insights")({
   head: () => ({
@@ -10,7 +12,10 @@ export const Route = createFileRoute("/insights")({
       { name: "description", content: "Field notes, research, and points of view on digital growth across East Africa." },
       { property: "og:title", content: "Insights — East Africa Internet Group" },
       { property: "og:description", content: "Field notes, research, and points of view on digital growth across East Africa." },
+      { property: "og:url", content: "https://eastafricainternetgroup.com/insights" },
+      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
+    links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/insights" }],
   }),
   component: Insights,
 });
@@ -27,21 +32,13 @@ const posts = [
 function Insights() {
   return (
     <PageTransition>
-      <section className="relative px-6 pt-40 pb-16 md:px-10">
-        <div className="mx-auto max-w-[1200px]">
-          <FadeIn><span className="text-xs uppercase tracking-[0.3em] opacity-60">Insights</span></FadeIn>
-          <RevealHeading
-            className="mt-6 max-w-[16ch] font-display text-4xl font-semibold leading-[1.05] md:text-7xl"
-            highlight="thinking"
-            delay={0.1}
-          >
-            Thinking, in the open.
-          </RevealHeading>
-          <FadeIn delay={0.6} className="mt-8 max-w-xl text-base leading-relaxed opacity-75 md:text-lg">
-            Short essays, field notes, and research from the work — published when it's useful, not when it's scheduled.
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Insights"
+        prefix="Thinking,"
+        rotating={["in the open.", "in motion.", "in public.", "in service.", "in long form."]}
+        description="Short essays, field notes, and research from the work — published when it's useful, not when it's scheduled."
+        image={heroInsights}
+      />
 
       <section className="relative px-6 py-20 md:px-10">
         <div className="mx-auto max-w-[1200px]">

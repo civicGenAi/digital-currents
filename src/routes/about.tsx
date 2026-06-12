@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { PageTransition } from "../components/PageTransition";
 import { RevealHeading, FadeIn } from "../components/RevealText";
+import { PageHero } from "../components/PageHero";
+import heroAbout from "../assets/hero-about.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -10,7 +12,10 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Built on science and technology. Mobilizing local talent and global networks across East Africa." },
       { property: "og:title", content: "About — East Africa Internet Group" },
       { property: "og:description", content: "Built on science and technology. Mobilizing local talent and global networks across East Africa." },
+      { property: "og:url", content: "https://eastafricainternetgroup.com/about" },
+      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
+    links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/about" }],
   }),
   component: About,
 });
@@ -27,23 +32,13 @@ const values = [
 function About() {
   return (
     <PageTransition>
-      <section className="relative px-6 pt-40 pb-24 md:px-10">
-        <div className="mx-auto max-w-[1200px]">
-          <FadeIn>
-            <span className="text-xs uppercase tracking-[0.3em] opacity-60">About EAG</span>
-          </FadeIn>
-          <RevealHeading
-            className="mt-6 max-w-[16ch] font-display text-4xl font-semibold leading-[1.05] md:text-7xl"
-            highlight="science"
-            delay={0.1}
-          >
-            Built on science and technology.
-          </RevealHeading>
-          <FadeIn delay={0.6} className="mt-8 max-w-xl text-base leading-relaxed opacity-75 md:text-lg">
-            A digital-centric marketing agency with deep experience across social media and every aspect of modern marketing.
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About EAG"
+        prefix="Built on"
+        rotating={["science.", "technology.", "craft.", "trust.", "the region."]}
+        description="A digital-centric marketing agency with deep experience across social media and every aspect of modern marketing — anchored in Tanzania, operating across East Africa."
+        image={heroAbout}
+      />
 
       <section className="relative px-6 py-24 md:px-10">
         <div className="mx-auto grid max-w-[1100px] gap-12 lg:grid-cols-2 lg:gap-20">
