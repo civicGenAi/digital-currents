@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { PageTransition } from "../components/PageTransition";
-import { RevealHeading, FadeIn } from "../components/RevealText";
+import { FadeIn } from "../components/RevealText";
 import { PageHero } from "../components/PageHero";
 import heroProjects from "../assets/hero-projects.jpg";
 
