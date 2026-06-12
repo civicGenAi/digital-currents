@@ -37,17 +37,23 @@ export function Nav() {
 
   useEffect(() => { setOpen(false); }, [pathname]);
 
+  // Routes that begin with a dark hero — keep nav light on top of them until scrolled.
+  const darkHeroRoutes = ["/", "/contact"];
+  const onDarkHero = darkHeroRoutes.includes(pathname) && !scrolled;
+
   return (
     <>
       <motion.header
         animate={{ y: hidden ? -100 : 0 }}
         transition={{ duration: 0.45, ease }}
-        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-          scrolled ? "backdrop-blur-xl bg-[color:var(--background)]/70 border-b border-[color:var(--border)]" : ""
+        className={`fixed inset-x-0 top-0 z-[60] backdrop-blur-xl transition-colors duration-500 ${
+          onDarkHero
+            ? "bg-[color:var(--navy-ink)]/40 border-b border-white/10 text-[color:var(--mist)]"
+            : "bg-[color:var(--background)]/80 border-b border-[color:var(--border)] text-[color:var(--foreground)]"
         }`}
       >
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 md:px-10">
-          <Logo data-cursor="Home" />
+          <Logo variant={onDarkHero ? "light" : "auto"} />
           <nav className="hidden items-center gap-8 lg:flex">
             {links.slice(1).map((l) => {
               const active = pathname === l.to;
