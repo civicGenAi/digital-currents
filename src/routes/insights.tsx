@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { PageTransition } from "../components/PageTransition";
-import "../components/RevealText";
 import { PageHero } from "../components/PageHero";
 import heroInsights from "../assets/hero-insights.jpg";
 
