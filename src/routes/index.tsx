@@ -16,7 +16,12 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "EAG — Building a connected, prosperous East Africa" },
       { property: "og:description", content: "Digital-centric marketing agency mobilizing local talent and global networks across East Africa." },
       { property: "og:url", content: "https://eastafricainternetgroup.com/" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "EAG — Building a connected, prosperous East Africa" },
+      { name: "twitter:description", content: "Digital-centric marketing agency mobilizing local talent and global networks across East Africa." },
+      { name: "twitter:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
     links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/" }],
   }),
@@ -123,7 +128,7 @@ function Index() {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <span className="text-xs uppercase tracking-[0.3em] opacity-60">02 — Reach</span>
-              <RevealHeading as="h2" className="mt-4 font-display text-3xl font-medium leading-[1.15] md:text-5xl" highlight="seven">
+              <RevealHeading as="h2" className="mt-4 font-display text-2xl font-medium leading-[1.15] md:text-5xl" highlight="seven">
                 Seven countries, one network.
               </RevealHeading>
             </div>
@@ -132,7 +137,7 @@ function Index() {
             </Link>
           </div>
 
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-3 lg:grid-cols-7">
+          <div className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5 sm:grid-cols-4 lg:grid-cols-7">
             {countries.map((c, i) => (
               <motion.div
                 key={c}
@@ -140,7 +145,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex aspect-square flex-col items-center justify-center gap-3 surface-dark p-4 text-center transition-colors duration-500 hover:bg-[color:var(--ocean-deep)]"
+                className="group relative flex flex-col items-center justify-center gap-2 surface-dark p-4 py-8 text-center transition-colors duration-500 hover:bg-[color:var(--ocean-deep)] md:aspect-square md:gap-3 md:py-4"
               >
                 <span className="h-2 w-2 rounded-full bg-[color:var(--cyan-flow)] animate-[node-pulse_2.5s_ease-in-out_infinite]" style={{ animationDelay: `${i * 0.2}s` }} />
                 <span className="text-xs uppercase tracking-[0.15em] opacity-80">{c}</span>
@@ -164,7 +169,7 @@ function Index() {
               All projects →
             </Link>
           </div>
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-8 md:mt-14 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
             {[1, 2, 3].map((i) => (
               <motion.article
                 key={i}
@@ -172,7 +177,7 @@ function Index() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-cyan-glow"
+                className="group relative w-[85vw] shrink-0 snap-center overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-cyan-glow md:w-auto"
                 data-cursor="Open"
               >
                 <div className="relative h-48 overflow-hidden rounded-xl" style={{ background: "linear-gradient(135deg, #0F4C81, #29B6E8)" }}>
@@ -193,6 +198,13 @@ function Index() {
                 </div>
               </motion.article>
             ))}
+          </div>
+          <div className="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] opacity-50 md:hidden">
+            <span>Swipe to view</span>
+            <svg width="24" height="10" viewBox="0 0 24 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 1L23 5L19 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M23 5H1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
         </div>
       </section>

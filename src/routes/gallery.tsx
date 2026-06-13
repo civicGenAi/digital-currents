@@ -12,6 +12,13 @@ export const Route = createFileRoute("/gallery")({
       { name: "description", content: "Moments from the studio and the field. A visual log from across the network." },
       { property: "og:title", content: "Gallery — East Africa Internet Group" },
       { property: "og:description", content: "Moments from the studio and the field. A visual log from across the network." },
+      { property: "og:url", content: "https://eastafricainternetgroup.com/gallery" },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Gallery — East Africa Internet Group" },
+      { name: "twitter:description", content: "Moments from the studio and the field. A visual log from across the network." },
+      { name: "twitter:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
   }),
   component: Gallery,
@@ -61,8 +68,8 @@ function Gallery() {
         </div>
       </section>
 
-      <section className="relative px-6 py-20 md:px-10">
-        <div className="mx-auto max-w-[1300px] columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
+      <section className="relative px-4 py-16 md:px-10 md:py-20">
+        <div className="mx-auto max-w-[1300px] columns-2 gap-2 md:columns-2 md:gap-4 lg:columns-3 xl:columns-4">
           {items.map((it, i) => (
             <motion.button
               key={i}
@@ -71,7 +78,7 @@ function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: (i % 4) * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              className="group mb-4 block w-full overflow-hidden rounded-xl"
+              className="group mb-2 block w-full overflow-hidden rounded-xl md:mb-4"
               style={{ height: it.h }}
               data-cursor="View"
             >

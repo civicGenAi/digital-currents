@@ -12,7 +12,12 @@ export const Route = createFileRoute("/insights")({
       { property: "og:title", content: "Insights — East Africa Internet Group" },
       { property: "og:description", content: "Field notes, research, and points of view on digital growth across East Africa." },
       { property: "og:url", content: "https://eastafricainternetgroup.com/insights" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Insights — East Africa Internet Group" },
+      { name: "twitter:description", content: "Field notes, research, and points of view on digital growth across East Africa." },
+      { name: "twitter:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
     links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/insights" }],
   }),
@@ -41,7 +46,7 @@ function Insights() {
 
       <section className="relative px-6 py-20 md:px-10">
         <div className="mx-auto max-w-[1200px]">
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--border)] md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--border)] lg:grid-cols-3">
             {posts.map((p, i) => (
               <motion.a
                 key={p.title}
@@ -50,17 +55,17 @@ function Insights() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative flex flex-col gap-6 bg-[color:var(--card)] p-8 transition-colors duration-500 hover:bg-[color:var(--secondary)]"
+                className="group relative flex flex-col gap-4 bg-[color:var(--card)] p-4 transition-colors duration-500 hover:bg-[color:var(--secondary)] md:gap-6 md:p-8"
                 data-cursor="Read"
               >
-                <div className="relative h-32 overflow-hidden rounded-lg" style={{ background: `linear-gradient(${100 + i * 30}deg, #0A2E4D, #1B6CA8)` }}>
+                <div className="relative h-20 overflow-hidden rounded-lg md:h-32" style={{ background: `linear-gradient(${100 + i * 30}deg, #0A2E4D, #1B6CA8)` }}>
                   <div className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-60" style={{ background: "radial-gradient(circle at 30% 60%, #29B6E8, transparent 60%)", opacity: 0.4 }} />
                 </div>
                 <div>
-                  <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.25em] opacity-60">
+                  <div className="flex flex-col gap-1 text-[9px] uppercase tracking-[0.2em] opacity-60 md:flex-row md:items-center md:justify-between md:text-[10px] md:tracking-[0.25em]">
                     <span>{p.tag}</span><span>{p.date}</span>
                   </div>
-                  <h3 className="mt-3 font-display text-lg font-medium leading-tight">
+                  <h3 className="mt-2 font-display text-sm font-medium leading-tight md:mt-3 md:text-lg">
                     <span className="link-underline">{p.title}</span>
                   </h3>
                 </div>

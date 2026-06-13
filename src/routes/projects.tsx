@@ -14,7 +14,12 @@ export const Route = createFileRoute("/projects")({
       { property: "og:title", content: "Projects — East Africa Internet Group" },
       { property: "og:description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
       { property: "og:url", content: "https://eastafricainternetgroup.com/projects" },
+      { property: "og:type", content: "website" },
       { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Projects — East Africa Internet Group" },
+      { name: "twitter:description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
+      { name: "twitter:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
     ],
     links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/projects" }],
   }),
@@ -44,7 +49,7 @@ function Projects() {
 
       <section className="relative px-6 py-20 md:px-10">
         <div className="mx-auto max-w-[1300px]">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
             {projects.map((p, i) => (
               <motion.article
                 key={p.title}
@@ -65,10 +70,10 @@ function Projects() {
                   </svg>
                   <span className="absolute right-4 top-4 rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">{p.year}</span>
                 </div>
-                <div className="flex items-start justify-between gap-4 p-6">
+                <div className="flex flex-col gap-2 p-4 md:flex-row md:items-start md:justify-between md:gap-4 md:p-6">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.25em] opacity-60">{p.tag}</p>
-                    <h3 className="mt-2 font-display text-lg font-medium leading-tight">{p.title}</h3>
+                    <p className="text-[9px] uppercase tracking-[0.2em] opacity-60 md:text-[10px] md:tracking-[0.25em]">{p.tag}</p>
+                    <h3 className="mt-1 font-display text-sm font-medium leading-tight md:mt-2 md:text-lg">{p.title}</h3>
                   </div>
                   <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
                 </div>

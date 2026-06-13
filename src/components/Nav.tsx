@@ -90,7 +90,7 @@ export function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[80] flex flex-col surface-dark"
+            className="fixed inset-0 z-[80] flex flex-col bg-black/40 backdrop-blur-xl"
             initial={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.5rem)" }}
             animate={{ clipPath: "circle(150% at calc(100% - 2.5rem) 2.5rem)" }}
             exit={{ clipPath: "circle(0% at calc(100% - 2.5rem) 2.5rem)" }}
@@ -98,11 +98,11 @@ export function Nav() {
           >
             <div className="flex items-center justify-between px-6 py-4">
               <Logo />
-              <button onClick={() => setOpen(false)} aria-label="Close">
+              <button onClick={() => setOpen(false)} aria-label="Close" className="text-white hover:text-[color:var(--cyan-flow)] transition-colors">
                 <X className="h-6 w-6" />
               </button>
             </div>
-            <nav className="flex flex-1 flex-col justify-center gap-4 px-8">
+            <nav className="flex flex-1 flex-col items-center justify-center gap-6 px-8 text-center">
               {links.map((l, i) => (
                 <motion.div
                   key={l.to}
@@ -110,12 +110,19 @@ export function Nav() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.6, ease, delay: 0.2 + i * 0.05 }}
                 >
-                  <Link to={l.to} className="font-display text-4xl tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+                  <Link 
+                    to={l.to} 
+                    className="font-display text-4xl font-medium tracking-tight text-white transition-colors duration-300 hover:text-[color:var(--cyan-flow)] md:text-5xl" 
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
                     {l.label}
                   </Link>
                 </motion.div>
               ))}
             </nav>
+            <div className="flex justify-center pb-10 text-[10px] uppercase tracking-widest text-white opacity-50">
+               East Africa Internet Group
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
