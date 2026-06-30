@@ -47,7 +47,10 @@ export const projects: ProjectRecord[] = [
       { label: "Power Consumption", value: "10 KW" },
       { label: "Occupancy", value: "2–4 people" },
       { label: "Layout", value: "1 bedroom, 1 living room, 1 bathroom" },
-      { label: "Customization", value: "Kitchen, furniture, appliances, curtains available on request" },
+      {
+        label: "Customization",
+        value: "Kitchen, furniture, appliances, curtains available on request",
+      },
     ],
     floorPlans: [
       {
@@ -90,10 +93,40 @@ export const projects: ProjectRecord[] = [
     },
     cta: { label: "Interested in a capsule for your site?", href: "/contact" },
   },
-  { slug: "brand-system-regional-bank", title: "Brand System for a Regional Bank", tag: "Brand · Digital", year: "2026" },
-  { slug: "bbn-network-launch-campaign", title: "BBN Network Launch Campaign", tag: "Campaign · Strategy", year: "2026" },
-  { slug: "telecom-replatforming-story", title: "Telecom Re-Platforming Story", tag: "Editorial · Film", year: "2025" },
-  { slug: "cross-border-market-entry", title: "Cross-Border Market Entry", tag: "Research · GTM", year: "2025" },
-  { slug: "civic-tech-movement", title: "Civic Tech Movement", tag: "Brand · Product", year: "2025" },
-  { slug: "agritech-series-b-narrative", title: "Agritech Series B Narrative", tag: "Narrative · Pitch", year: "2024" },
+  {
+    slug: "brand-system-regional-bank",
+    title: "Brand System for a Regional Bank",
+    tag: "Brand · Digital",
+    year: "2026",
+  },
+  {
+    slug: "bbn-network-launch-campaign",
+    title: "BBN Network Launch Campaign",
+    tag: "Campaign · Strategy",
+    year: "2026",
+  },
+  {
+    slug: "telecom-replatforming-story",
+    title: "Telecom Re-Platforming Story",
+    tag: "Editorial · Film",
+    year: "2025",
+  },
+  {
+    slug: "cross-border-market-entry",
+    title: "Cross-Border Market Entry",
+    tag: "Research · GTM",
+    year: "2025",
+  },
+  {
+    slug: "civic-tech-movement",
+    title: "Civic Tech Movement",
+    tag: "Brand · Product",
+    year: "2025",
+  },
+  {
+    slug: "agritech-series-b-narrative",
+    title: "Agritech Series B Narrative",
+    tag: "Narrative · Pitch",
+    year: "2024",
+  },
 ];

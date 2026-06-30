@@ -11,16 +11,31 @@ export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
       { title: "Projects — East Africa Internet Group" },
-      { name: "description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
+      {
+        name: "description",
+        content: "Work that moves the region. Selected case studies and campaigns from EAG.",
+      },
       { property: "og:title", content: "Projects — East Africa Internet Group" },
-      { property: "og:description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
+      {
+        property: "og:description",
+        content: "Work that moves the region. Selected case studies and campaigns from EAG.",
+      },
       { property: "og:url", content: "https://eastafricainternetgroup.com/projects" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
+      {
+        property: "og:image",
+        content: "https://eastafricainternetgroup.com/android-chrome-512x512.png",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Projects — East Africa Internet Group" },
-      { name: "twitter:description", content: "Work that moves the region. Selected case studies and campaigns from EAG." },
-      { name: "twitter:image", content: "https://eastafricainternetgroup.com/android-chrome-512x512.png" },
+      {
+        name: "twitter:description",
+        content: "Work that moves the region. Selected case studies and campaigns from EAG.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://eastafricainternetgroup.com/android-chrome-512x512.png",
+      },
     ],
     links: [{ rel: "canonical", href: "https://eastafricainternetgroup.com/projects" }],
   }),
@@ -56,7 +71,16 @@ function Projects() {
                   className="group relative block overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] transition-all duration-500 hover:-translate-y-1 hover:shadow-cyan-glow"
                   data-cursor="Open"
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden" style={!p.sitePhoto ? { background: `linear-gradient(${135 + i * 25}deg, #0A2E4D, #1B6CA8 60%, #29B6E8)` } : undefined}>
+                  <div
+                    className="relative aspect-[4/3] overflow-hidden"
+                    style={
+                      !p.sitePhoto
+                        ? {
+                            background: `linear-gradient(${135 + i * 25}deg, #0A2E4D, #1B6CA8 60%, #29B6E8)`,
+                          }
+                        : undefined
+                    }
+                  >
                     {p.sitePhoto ? (
                       <img
                         src={p.sitePhoto.src}
@@ -65,22 +89,49 @@ function Projects() {
                       />
                     ) : (
                       <>
-                        <div className="absolute inset-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80" style={{ background: "radial-gradient(circle at 70% 30%, #5FD0F5, transparent 55%)" }} />
-                        <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 400 300" fill="none">
+                        <div
+                          className="absolute inset-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80"
+                          style={{
+                            background:
+                              "radial-gradient(circle at 70% 30%, #5FD0F5, transparent 55%)",
+                          }}
+                        />
+                        <svg
+                          className="absolute inset-0 h-full w-full opacity-40"
+                          viewBox="0 0 400 300"
+                          fill="none"
+                        >
                           {Array.from({ length: 8 }).map((_, k) => (
-                            <circle key={k} cx={50 + k * 45} cy={150 + Math.sin(k + i) * 60} r="2.5" fill="#F4FAFD" />
+                            <circle
+                              key={k}
+                              cx={50 + k * 45}
+                              cy={150 + Math.sin(k + i) * 60}
+                              r="2.5"
+                              fill="#F4FAFD"
+                            />
                           ))}
-                          <path d={`M50 ${150 + Math.sin(i) * 60} Q 200 ${80 + i * 10} 380 ${150 + Math.cos(i) * 50}`} stroke="#F4FAFD" strokeWidth="0.8" fill="none" />
+                          <path
+                            d={`M50 ${150 + Math.sin(i) * 60} Q 200 ${80 + i * 10} 380 ${150 + Math.cos(i) * 50}`}
+                            stroke="#F4FAFD"
+                            strokeWidth="0.8"
+                            fill="none"
+                          />
                         </svg>
                       </>
                     )}
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                    <span className="absolute right-4 top-4 rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">{p.year}</span>
+                    <span className="absolute right-4 top-4 rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">
+                      {p.year}
+                    </span>
                   </div>
                   <div className="flex flex-col gap-2 p-4 md:flex-row md:items-start md:justify-between md:gap-4 md:p-6">
                     <div>
-                      <p className="text-[9px] uppercase tracking-[0.2em] opacity-60 md:text-[10px] md:tracking-[0.25em]">{p.tag}</p>
-                      <h3 className="mt-1 font-display text-sm font-medium leading-tight md:mt-2 md:text-lg">{p.title}</h3>
+                      <p className="text-[9px] uppercase tracking-[0.2em] opacity-60 md:text-[10px] md:tracking-[0.25em]">
+                        {p.tag}
+                      </p>
+                      <h3 className="mt-1 font-display text-sm font-medium leading-tight md:mt-2 md:text-lg">
+                        {p.title}
+                      </h3>
                     </div>
                     <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
                   </div>
@@ -89,12 +140,23 @@ function Projects() {
             ))}
           </div>
 
-          <FadeIn delay={0.2} className="mt-20 flex flex-col items-start gap-6 rounded-3xl border border-[color:var(--border)] bg-[color:var(--card)] p-10 md:flex-row md:items-center md:justify-between">
+          <FadeIn
+            delay={0.2}
+            className="mt-20 flex flex-col items-start gap-6 rounded-3xl border border-[color:var(--border)] bg-[color:var(--card)] p-10 md:flex-row md:items-center md:justify-between"
+          >
             <div>
-              <h3 className="font-display text-2xl font-medium md:text-3xl">Have a brief in motion?</h3>
-              <p className="mt-2 max-w-md text-sm opacity-70">We take on a small number of partners each quarter. Tell us what you're building.</p>
+              <h3 className="font-display text-2xl font-medium md:text-3xl">
+                Have a brief in motion?
+              </h3>
+              <p className="mt-2 max-w-md text-sm opacity-70">
+                We take on a small number of partners each quarter. Tell us what you're building.
+              </p>
             </div>
-            <Link to="/contact" className="rounded-full bg-gradient-flow px-6 py-3 text-xs font-medium uppercase tracking-widest text-[color:var(--navy-ink)] transition-transform duration-500 hover:scale-[1.03]" data-cursor="Talk">
+            <Link
+              to="/contact"
+              className="rounded-full bg-gradient-flow px-6 py-3 text-xs font-medium uppercase tracking-widest text-[color:var(--navy-ink)] transition-transform duration-500 hover:scale-[1.03]"
+              data-cursor="Talk"
+            >
               Start a Project
             </Link>
           </FadeIn>
