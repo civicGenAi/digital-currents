@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { PageTransition } from "../components/PageTransition";
-import { FadeIn } from "../components/RevealText";
-import { PageHero } from "../components/PageHero";
-import heroProjects from "../assets/hero-projects.jpg";
+import { PageTransition } from "../../components/PageTransition";
+import { FadeIn } from "../../components/RevealText";
+import { PageHero } from "../../components/PageHero";
+import heroProjects from "../../assets/hero-projects.jpg";
+import { projects } from "../../data/projects";
 
-export const Route = createFileRoute("/projects")({
+export const Route = createFileRoute("/projects/")({
   head: () => ({
     meta: [
       { title: "Projects — East Africa Internet Group" },
@@ -26,15 +27,6 @@ export const Route = createFileRoute("/projects")({
   component: Projects,
 });
 
-const projects = [
-  { title: "Brand System for a Regional Bank", tag: "Brand · Digital", year: "2026" },
-  { title: "BBN Network Launch Campaign", tag: "Campaign · Strategy", year: "2026" },
-  { title: "Telecom Re-Platforming Story", tag: "Editorial · Film", year: "2025" },
-  { title: "Cross-Border Market Entry", tag: "Research · GTM", year: "2025" },
-  { title: "Civic Tech Movement", tag: "Brand · Product", year: "2025" },
-  { title: "Agritech Series B Narrative", tag: "Narrative · Pitch", year: "2024" },
-];
-
 function Projects() {
   return (
     <PageTransition>
@@ -52,31 +44,47 @@ function Projects() {
           <div className="grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-3">
             {projects.map((p, i) => (
               <motion.article
-                key={p.title}
+                key={p.slug}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.7, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-                className="group relative overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] transition-all duration-500 hover:-translate-y-1 hover:shadow-cyan-glow"
-                data-cursor="Open"
               >
-                <div className="relative aspect-[4/3] overflow-hidden" style={{ background: `linear-gradient(${135 + i * 25}deg, #0A2E4D, #1B6CA8 60%, #29B6E8)` }}>
-                  <div className="absolute inset-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80" style={{ background: "radial-gradient(circle at 70% 30%, #5FD0F5, transparent 55%)" }} />
-                  <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 400 300" fill="none">
-                    {Array.from({ length: 8 }).map((_, k) => (
-                      <circle key={k} cx={50 + k * 45} cy={150 + Math.sin(k + i) * 60} r="2.5" fill="#F4FAFD" />
-                    ))}
-                    <path d={`M50 ${150 + Math.sin(i) * 60} Q 200 ${80 + i * 10} 380 ${150 + Math.cos(i) * 50}`} stroke="#F4FAFD" strokeWidth="0.8" fill="none" />
-                  </svg>
-                  <span className="absolute right-4 top-4 rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">{p.year}</span>
-                </div>
-                <div className="flex flex-col gap-2 p-4 md:flex-row md:items-start md:justify-between md:gap-4 md:p-6">
-                  <div>
-                    <p className="text-[9px] uppercase tracking-[0.2em] opacity-60 md:text-[10px] md:tracking-[0.25em]">{p.tag}</p>
-                    <h3 className="mt-1 font-display text-sm font-medium leading-tight md:mt-2 md:text-lg">{p.title}</h3>
+                <Link
+                  to="/projects/$slug"
+                  params={{ slug: p.slug }}
+                  className="group relative block overflow-hidden rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] transition-all duration-500 hover:-translate-y-1 hover:shadow-cyan-glow"
+                  data-cursor="Open"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden" style={!p.sitePhoto ? { background: `linear-gradient(${135 + i * 25}deg, #0A2E4D, #1B6CA8 60%, #29B6E8)` } : undefined}>
+                    {p.sitePhoto ? (
+                      <img
+                        src={p.sitePhoto.src}
+                        alt={p.sitePhoto.alt}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 opacity-50 transition-opacity duration-500 group-hover:opacity-80" style={{ background: "radial-gradient(circle at 70% 30%, #5FD0F5, transparent 55%)" }} />
+                        <svg className="absolute inset-0 h-full w-full opacity-40" viewBox="0 0 400 300" fill="none">
+                          {Array.from({ length: 8 }).map((_, k) => (
+                            <circle key={k} cx={50 + k * 45} cy={150 + Math.sin(k + i) * 60} r="2.5" fill="#F4FAFD" />
+                          ))}
+                          <path d={`M50 ${150 + Math.sin(i) * 60} Q 200 ${80 + i * 10} 380 ${150 + Math.cos(i) * 50}`} stroke="#F4FAFD" strokeWidth="0.8" fill="none" />
+                        </svg>
+                      </>
+                    )}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                    <span className="absolute right-4 top-4 rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-widest text-white backdrop-blur">{p.year}</span>
                   </div>
-                  <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
-                </div>
+                  <div className="flex flex-col gap-2 p-4 md:flex-row md:items-start md:justify-between md:gap-4 md:p-6">
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.2em] opacity-60 md:text-[10px] md:tracking-[0.25em]">{p.tag}</p>
+                      <h3 className="mt-1 font-display text-sm font-medium leading-tight md:mt-2 md:text-lg">{p.title}</h3>
+                    </div>
+                    <ArrowUpRight className="h-5 w-5 shrink-0 transition-transform duration-500 group-hover:rotate-45" />
+                  </div>
+                </Link>
               </motion.article>
             ))}
           </div>
